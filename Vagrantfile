@@ -18,7 +18,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #config.vm.box = "centos/7"
 
   # vagrant-vbguest plugin option
-  config.vbguest.auto_update = false
+  #config.vbguest.auto_update = false
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
