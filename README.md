@@ -1,6 +1,6 @@
 # Vagrant project with devstack and Chef recipes for Masakari
 
-## What is deploy_vagrant ?
+## What is masakari-deploy ?
 It contains Vagrantfile and chef recipes to deploy three VMs including OpenStack and Masakari. You will be able to test and demonstrate the way how Masakari works on your laptop.
 
 ## How to use ?
