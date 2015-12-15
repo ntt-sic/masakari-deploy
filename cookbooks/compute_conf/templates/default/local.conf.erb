@@ -1,0 +1,51 @@
+# reference:
+#   neutron:
+#     https://github.com/openstack-dev/devstack/blob/master/doc/source/guides/neutron.rst
+#
+[[local|localrc]]
+ADMIN_PASSWORD=password
+DATABASE_PASSWORD=password
+#MYSQL_PASSWORD=password
+RABBIT_PASSWORD=password
+SERVICE_PASSWORD=password
+SERVICE_TOKEN=tokentoken
+#
+HOST_IP=<%= node['compute_conf']['host_ip'] %>
+SERVICE_HOST=<%= node['compute_conf']['service_host'] %>
+MYSQL_HOST=<%= node['compute_conf']['service_host'] %>
+RABBIT_HOST=<%= node['compute_conf']['service_host'] %>
+GLANCE_HOSTPORT=<%= node['compute_conf']['service_host'] %>:9292
+#
+## neutron options
+PUBLIC_INTERFACE=eth1
+#
+#
+LOGFILE=$DEST/logs/stack.sh.log
+LOGDAYS=2
+#
+#
+ENABLED_SERVICES=n-cpu,q-agt
+NOVA_VNC_ENABLED=True
+VNCSERVER_LISTEN=<%= node['compute_conf']['host_ip'] %>
+VNCSERVER_PROXYCLIENT_ADDRESS=<%= node['compute_conf']['host_ip'] %>
+NOVA_INSTANCES_PATH=/mnt/instances
+#
+### use local repository
+##CINDER_REPO=/vagrant_openstack/cinder
+##CINDERCLIENT_REPO=/vagrant_openstack/python-cinderclient
+##GLANCE_REPO=/vagrant_openstack/glance
+##GLANCECLIENT_REPO=/vagrant_openstack/python-glanceclient
+##HORIZON_REPO=/vagrant_openstack/horizon
+##KEYSTONE_REPO=/vagrant_openstack/keystone
+##KEYSTONECLIENT_REPO=/vagrant_openstack/python-keystoneclient
+##NOVA_REPO=/vagrant_openstack/nova
+##NOVACLIENT_REPO=/vagrant_openstack/python-novaclient
+##NEUTRON_REPO=/vagrant_openstack/neutron
+##NEUTRON_FWAAS_REPO=/vagrant_openstack/neutron-fwaas
+##NEUTRON_LBAAS_REPO=/vagrant_openstack/neutron-lbaas
+##NEUTRON_VPNAAS_REPO=/vagrant_openstack/neutron-vpnaas
+##NEUTRONCLIENT_REPO=/vagrant_openstack/python-neutronclient
+##SWIFT_REPO=/vagrant_openstack/swift
+##SWIFTCLIENT_REPO=/vagrant_openstack/python-swiftclient
+##TEMPEST_REPO=/vagrant_openstack/tempest
+##REQUIREMENTS_REPO=/vagrant_openstack/requirements

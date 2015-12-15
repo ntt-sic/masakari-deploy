@@ -1,0 +1,12 @@
+{
+  "name": "controller",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "run_list": [
+    "recipe[guestos]",
+    "recipe[devstack]",
+    "recipe[masakari]",
+    "recipe[controller_conf]",
+    "recipe[masakari_controller_conf]"
+  ]
+}

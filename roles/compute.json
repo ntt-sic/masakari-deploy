@@ -1,0 +1,13 @@
+{
+  "name": "compute",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "run_list": [
+    "recipe[guestos]",
+    "recipe[pacemaker]",
+    "recipe[devstack]",
+    "recipe[masakari]",
+    "recipe[compute_conf]",
+    "recipe[masakari_compute_conf]"
+  ]
+}

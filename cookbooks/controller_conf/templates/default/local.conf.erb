@@ -1,0 +1,68 @@
+# reference:
+#   neutron:
+#     https://github.com/openstack-dev/devstack/blob/master/doc/source/guides/neutron.rst
+#
+[[local|localrc]]
+ADMIN_PASSWORD=password
+DATABASE_PASSWORD=password
+#MYSQL_PASSWORD=password
+RABBIT_PASSWORD=password
+SERVICE_PASSWORD=password
+SERVICE_TOKEN=tokentoken
+#
+HOST_IP=<%= node['controller_conf']['host_ip'] %>
+SERVICE_HOST=<%= node['controller_conf']['service_host'] %>
+MYSQL_HOST=<%= node['controller_conf']['service_host'] %>
+RABBIT_HOST=<%= node['controller_conf']['service_host'] %>
+GLANCE_HOSTPORT=<%= node['controller_conf']['service_host'] %>:9292
+#
+## neutron options
+Q_USE_SECGROUP=True
+FLOATING_RANGE=192.168.50.0/24
+FIXED_RANGE=10.0.0.0/24
+Q_FLOATING_ALLOCATION_POOL=start=192.168.50.128,end=192.168.50.253
+PUBLIC_NETWORK_GATEWAY=192.168.50.254
+Q_L3_ENABLED=True
+PUBLIC_INTERFACE=eth1
+Q_USE_PROVIDERNET_FOR_PUBLIC=True
+OVS_PHYSICAL_BRIDGE=br-ex
+PUBLIC_BRIDGE=br-ex
+OVS_BRIDGE_MAPPING=public:br-ex
+#
+#
+LOGFILE=$DEST/logs/stack.sh.log
+LOGDAYS=2
+#
+#SWIFT_HASH=66a3d6b56c1f479c8b4e70ab5c2000f5
+#SWIFT_REPLICAS=1
+#SWIFT_DATA_DIR=$DEST/data
+#
+#enable_service s-proxy s-object s-container s-account
+disable_service n-net
+disable_service n-cpu
+enable_service q-svc
+enable_service q-agt
+enable_service q-dhcp
+enable_service q-l3
+enable_service q-meta
+enable_service tempest
+#
+### use local repository
+##CINDER_REPO=/vagrant_openstack/cinder
+##CINDERCLIENT_REPO=/vagrant_openstack/python-cinderclient
+##GLANCE_REPO=/vagrant_openstack/glance
+##GLANCECLIENT_REPO=/vagrant_openstack/python-glanceclient
+##HORIZON_REPO=/vagrant_openstack/horizon
+##KEYSTONE_REPO=/vagrant_openstack/keystone
+##KEYSTONECLIENT_REPO=/vagrant_openstack/python-keystoneclient
+##NOVA_REPO=/vagrant_openstack/nova
+##NOVACLIENT_REPO=/vagrant_openstack/python-novaclient
+##NEUTRON_REPO=/vagrant_openstack/neutron
+##NEUTRON_FWAAS_REPO=/vagrant_openstack/neutron-fwaas
+##NEUTRON_LBAAS_REPO=/vagrant_openstack/neutron-lbaas
+##NEUTRON_VPNAAS_REPO=/vagrant_openstack/neutron-vpnaas
+##NEUTRONCLIENT_REPO=/vagrant_openstack/python-neutronclient
+##SWIFT_REPO=/vagrant_openstack/swift
+##SWIFTCLIENT_REPO=/vagrant_openstack/python-swiftclient
+##TEMPEST_REPO=/vagrant_openstack/tempest
+##REQUIREMENTS_REPO=/vagrant_openstack/requirements

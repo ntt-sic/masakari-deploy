@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# grant user 'stack' to access screens of devstack
+
+sudo chown stack:stack `readlink /proc/self/fd/0`
