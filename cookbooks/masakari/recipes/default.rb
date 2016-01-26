@@ -28,28 +28,28 @@ when 'ubuntu', 'debian'
     end
   end
 
-  execute "masakari_1.0.0-1_all.deb" do
+  execute "masakari-controller_1.0.0-1_all.deb" do
     command 'sudo ./debian/rules binary'
-    cwd '/home/stack/masakari/masakari'
-    creates '/home/stack/masakari/masakari_1.0.0-1_all.deb'
+    cwd '/home/stack/masakari/masakari-controller'
+    creates '/home/stack/masakari/masakari-controller_1.0.0-1_all.deb'
   end
 
   execute "hostmonitor_1.0.0-1_all.deb" do
     command 'sudo ./debian/rules binary'
     cwd '/home/stack/masakari/masakari-hostmonitor'
-    creates '/home/stack/masakari/hostmonitor_1.0.0-1_all.deb'
+    creates '/home/stack/masakari/masakari-hostmonitor_1.0.0-1_all.deb'
   end
 
   execute "instancemonitor_1.0.0-1_all.deb" do
     command 'sudo ./debian/rules binary'
     cwd '/home/stack/masakari/masakari-instancemonitor'
-    creates '/home/stack/masakari/instancemonitor_1.0.0-1_all.deb'
+    creates '/home/stack/masakari/masakari-instancemonitor_1.0.0-1_all.deb'
   end
 
   execute "processmonitor_1.0.0-1_all.deb" do
     command 'sudo ./debian/rules binary'
     cwd '/home/stack/masakari/masakari-processmonitor'
-    creates '/home/stack/masakari/processmonitor_1.0.0-1_all.deb'
+    creates '/home/stack/masakari/masakari-processmonitor_1.0.0-1_all.deb'
   end
 when 'redhat', 'centos'
 end
