@@ -31,14 +31,14 @@ root@controller:~# su - stack
 stack@controller:~$ cd devstack/
 stack@controller:~/devstack$ ./stack.sh
 ```
-* prepare masakari database in Controller
+* prepare masakari-controller database in Controller
 ```sh
 stack@controller:~/devstack$ cd ~/masakari/
 stack@controller:~/masakari$ ./masakari_database_setting.sh
 ```
-* start masakari in Controller
+* start masakari-controller in Controller
 ```sh
-stack@controller:~/masakari$ sudo service masakari start
+stack@controller:~/masakari$ sudo service masakari-controller start
 ```
 * deploy OpenStack in Compute1 and Compute2 (execute respectively)
 ```sh
@@ -50,9 +50,9 @@ stack@compute1:~/devstack$ ./stack.sh
 ```
 * start masakari monitors in Compute1 and Compute2 (execute respectively)
 ```sh
-stack@compute1:~/devstack$ sudo service hostmonitor start
-stack@compute1:~/devstack$ sudo service instancemonitor start
-stack@compute1:~/devstack$ sudo service processmonitor start
+stack@compute1:~/devstack$ sudo service masakari-hostmonitor start
+stack@compute1:~/devstack$ sudo service masakari-instancemonitor start
+stack@compute1:~/devstack$ sudo service masakari-processmonitor start
 ```
 
 ### Demonstration of Failover
@@ -93,7 +93,7 @@ $ nova --os-tenant-name demo instance-action-list vm2
 
 ### Recovery of Failed Host
 
-* restart(recreate) a failed host with provisioner, Compute1 
+* restart(recreate) a failed host with provisioner, Compute1
 ```sh
 $ vagrant up compute1 --provision
 ```
