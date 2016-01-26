@@ -34,19 +34,19 @@ when 'ubuntu', 'debian'
     creates '/home/stack/masakari/masakari-controller_1.0.0-1_all.deb'
   end
 
-  execute "hostmonitor_1.0.0-1_all.deb" do
+  execute "masakari-hostmonitor_1.0.0-1_all.deb" do
     command 'sudo ./debian/rules binary'
     cwd '/home/stack/masakari/masakari-hostmonitor'
     creates '/home/stack/masakari/masakari-hostmonitor_1.0.0-1_all.deb'
   end
 
-  execute "instancemonitor_1.0.0-1_all.deb" do
+  execute "masakari-instancemonitor_1.0.0-1_all.deb" do
     command 'sudo ./debian/rules binary'
     cwd '/home/stack/masakari/masakari-instancemonitor'
     creates '/home/stack/masakari/masakari-instancemonitor_1.0.0-1_all.deb'
   end
 
-  execute "processmonitor_1.0.0-1_all.deb" do
+  execute "masakari-processmonitor_1.0.0-1_all.deb" do
     command 'sudo ./debian/rules binary'
     cwd '/home/stack/masakari/masakari-processmonitor'
     creates '/home/stack/masakari/masakari-processmonitor_1.0.0-1_all.deb'
