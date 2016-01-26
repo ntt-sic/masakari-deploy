@@ -9,8 +9,8 @@ when 'redhat', 'centos'
   directory '/etc/masakari' # fake
 end
 
-template '/etc/masakari/masakari.conf' do
-  source 'masakari.conf.erb'
+template '/etc/masakari/masakari-controller.conf' do
+  source 'masakari-controller.conf.erb'
   owner 'root'
   group 'root'
   mode '0644'
