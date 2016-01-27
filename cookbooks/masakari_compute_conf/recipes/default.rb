@@ -20,21 +20,21 @@ when 'redhat', 'centos'
 end
 
 template '/etc/masakari/masakari-hostmonitor.conf' do
-  source 'hostmonitor.conf.erb'
+  source 'masakari-hostmonitor.conf.erb'
   owner 'root'
   group 'root'
   mode '0644'
 end
 
 template '/etc/masakari/masakari-instancemonitor.conf' do
-  source 'instancemonitor.conf.erb'
+  source 'masakari-instancemonitor.conf.erb'
   owner 'root'
   group 'root'
   mode '0644'
 end
 
 template '/etc/masakari/masakari-processmonitor.conf' do
-  source 'processmonitor.conf.erb'
+  source 'masakari-processmonitor.conf.erb'
   owner 'root'
   group 'root'
   mode '0644'

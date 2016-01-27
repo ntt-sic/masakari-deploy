@@ -1,6 +1,6 @@
 case node[:platform]
 when 'ubuntu', 'debian'
-  dpkg_package "masakari_1.0.0-1_all" do
+  dpkg_package "masakari-controller_1.0.0-1_all" do
     source '/home/stack/masakari/masakari-controller_1.0.0-1_all.deb'
     action :install
   end
