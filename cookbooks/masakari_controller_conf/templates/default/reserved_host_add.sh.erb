@@ -6,7 +6,7 @@ DB_HOST=<%= node['controller_conf']['service_host'] %>
 MCASTADDR=226.94.1.1
 MCASTPORT=5405
 
-cd masakari/utils
+cd masakari-controller/utils
 sudo python reserve_host_manage.py --mode add \
  --port "226.94.1.1:5405" \
  --port "${MCASTADDR}:${MCASTPORT}" \

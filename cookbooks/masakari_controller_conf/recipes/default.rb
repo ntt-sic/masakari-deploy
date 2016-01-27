@@ -1,7 +1,7 @@
 case node[:platform]
 when 'ubuntu', 'debian'
-  dpkg_package "masakari_1.0.0-1_all" do
-    source '/home/stack/masakari/masakari_1.0.0-1_all.deb'
+  dpkg_package "masakari-controller_1.0.0-1_all" do
+    source '/home/stack/masakari/masakari-controller_1.0.0-1_all.deb'
     action :install
   end
 when 'redhat', 'centos'
@@ -9,8 +9,8 @@ when 'redhat', 'centos'
   directory '/etc/masakari' # fake
 end
 
-template '/etc/masakari/masakari.conf' do
-  source 'masakari.conf.erb'
+template '/etc/masakari/masakari-controller.conf' do
+  source 'masakari-controller.conf.erb'
   owner 'root'
   group 'root'
   mode '0644'
