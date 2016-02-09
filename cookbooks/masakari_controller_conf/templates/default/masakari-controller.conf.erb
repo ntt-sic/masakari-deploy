@@ -7,6 +7,8 @@ name = vm_ha
 user = root
 passwd = password
 charset = utf8
+lock_retry_max_cnt = 6
+innodb_lock_wait_timeout = 50
 
 [log]
 log_level = info
@@ -23,6 +25,7 @@ recovery_max_retry_cnt = 6
 recovery_retry_interval = 10
 api_check_interval = 1
 api_check_max_cnt = 30
+notification_expiration_sec = 900
 
 [nova]
 domain = Default
