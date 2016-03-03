@@ -5,13 +5,32 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  # Work behind proxy?
+  # source: https://github.com/tmatilai/vagrant-proxyconf
+  # First, install the plugin:
+  # $vagrant plugin install vagrant-proxyconf
+  # then uncomment following section and set your proxy server
+  # Note:
+  # In no_proxy, for some reason IP range regex does not work.
+  # Therefore, put all the no_proxy IPs in config.proxy.no_proxy list.
+  # if Vagrant.has_plugin?("vagrant-proxyconf")
+  #   config.proxy.http     = "YOUR-HTTP-PROXY-SERVER"
+  #   config.proxy.https    = "YOUR-HTTPS-PROXY-SERVER"
+  #   config.proxy.no_proxy = "localhost,127.0.0.1,192.168.50.1,192.168.50.10,192.168.50.11, 192.168.50.12"
+  # end
+
+  # Recommended plugins
+  # This will install required additions to gust VM
+  # vagrant plugin install vagrant-vbguest
+
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
   #config.vm.box = "base"
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "centos/7"
   # WIP, experimental: ubuntu/vivid64
   #config.vm.box = "ubuntu/vivid64"
   # WIP, experimental: centos/7
@@ -133,15 +152,23 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # chef-validator, unless you changed the configuration.
   #
   #   chef.validation_client_name = "ORGNAME-validator"
-
   # Definition of Controller node
-  config.vm.define "controller" do |controller|
-    controller.vm.hostname = "controller"
+  config.vm.define "controller01" do |controller|
+    controller.vm.hostname = "controller01"
     controller.vm.network "private_network", ip: "192.168.50.10"
     controller.vm.provider "virtualbox" do |vb|
       vb.customize ["modifyvm", :id, "--memory", "8192", "--cpus", "4", "--ioapic", "on"]
     end
     controller.vm.provision "chef_solo" do |chef|
+      # run vagrant as
+      #$CHEF_LOG=debug vagrant provision
+      chef.log_level = ENV.fetch("CHEF_LOG", "info").downcase.to_sym
+      # Log format
+      # Valid formats are doc, min (or minimal), and null.
+      # Chef uses doc by default when you run it directly from the command line.
+      # Vagrant, on the other hand, applies null by default
+      chef.formatter = ENV.fetch("CHEF_FORMAT", "null").downcase.to_sym
+      chef.arguments = '-l debug'
       chef.roles_path = "roles"
       chef.add_role("controller")
       chef.json = {
@@ -151,22 +178,29 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         },
         "masakari_controller_conf" => {
           "hostentrylist" => [
-            { "compute1" => "192.168.50.11" },
-            { "compute2" => "192.168.50.12" }
+            { "compute01" => "192.168.50.11" },
+            { "compute02" => "192.168.50.12" }
           ]
+        },
+        "masakari_ci_conf" => {
+          "masakari_git" => "https://github.com/ntt-sic/masakari.git",
+          "masakari_branch" => "pkging/setupwithpbr"
         }
       }
     end
   end
 
   # Definition of Compute node No.1
-  config.vm.define "compute1" do |compute1|
-    compute1.vm.hostname = "compute1"
+  config.vm.define "compute01" do |compute1|
+    compute1.vm.hostname = "compute01"
     compute1.vm.network "private_network", ip: "192.168.50.11"
     compute1.vm.provider "virtualbox" do |vb|
       vb.customize ["modifyvm", :id, "--memory", "1024", "--cpus", "1", "--ioapic", "on"]
     end
     compute1.vm.provision "chef_solo" do |chef|
+      chef.log_level = ENV.fetch("CHEF_LOG", "info").downcase.to_sym
+      chef.formatter = ENV.fetch("CHEF_FORMAT", "null").downcase.to_sym
+      chef.arguments = '-l debug'
       chef.roles_path = "roles"
       chef.add_role("compute")
       chef.json = {
@@ -177,19 +211,26 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         "compute_conf" => {
           "host_ip" => "192.168.50.11",
           "service_host" => "192.168.50.10"
+        },
+        "masakari_ci_conf" => {
+          "masakari_git" => "https://github.com/ntt-sic/masakari.git",
+          "masakari_branch" => "pkging/setupwithpbr"
         }
       }
     end
   end
 
   # Definition of Compute node No.2
-  config.vm.define "compute2" do |compute2|
-    compute2.vm.hostname = "compute2"
+  config.vm.define "compute02" do |compute2|
+    compute2.vm.hostname = "compute02"
     compute2.vm.network "private_network", ip: "192.168.50.12"
     compute2.vm.provider "virtualbox" do |vb|
       vb.customize ["modifyvm", :id, "--memory", "1024", "--cpus", "1", "--ioapic", "on"]
     end
     compute2.vm.provision "chef_solo" do |chef|
+      chef.log_level = ENV.fetch("CHEF_LOG", "info").downcase.to_sym
+      chef.formatter = ENV.fetch("CHEF_FORMAT", "null").downcase.to_sym
+      chef.arguments = '-l debug'
       chef.roles_path = "roles"
       chef.add_role("compute")
       chef.json = {
@@ -200,6 +241,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         "compute_conf" => {
           "host_ip" => "192.168.50.12",
           "service_host" => "192.168.50.10"
+        },
+        "masakari_ci_conf" => {
+          "masakari_git" => "https://github.com/ntt-sic/masakari.git",
+          "masakari_branch" => "pkging/setupwithpbr"
         }
       }
     end
