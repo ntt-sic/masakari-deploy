@@ -1,4 +1,3 @@
-
 # temporal workaround code to avoid a bug in ubuntu 15.04 repo (vivid)
 #   https://bugs.launchpad.net/ubuntu/+source/openhpi/+bug/1488453
 case node[:platform]
@@ -29,8 +28,16 @@ when 'ubuntu'
   end
 end
 
+
 %w{corosync pacemaker}.each do |pkg|
   package pkg do
+    action :install
+  end
+end
+
+case node[:platform]
+when 'redhat', 'centos'
+  package 'pcs' do
     action :install
   end
 end

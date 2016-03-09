@@ -5,8 +5,13 @@ when 'ubuntu', 'debian'
     action :install
   end
 when 'redhat', 'centos'
-  # TBD
-  directory '/etc/masakari' # fake
+  package ['python-setuptools', 'python-devel', 'mariadb-devel'] do
+    action :install
+  end
+  rpm_package "masakari-controller-1.0.0-1.x86_64" do
+    source "/home/stack/masakari/masakari-controller-1.0.0-1.x86_64.rpm"
+    action :install
+  end
 end
 
 template '/etc/masakari/masakari-controller.conf' do

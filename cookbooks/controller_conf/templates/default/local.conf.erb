@@ -3,6 +3,7 @@
 #     https://github.com/openstack-dev/devstack/blob/master/doc/source/guides/neutron.rst
 #
 [[local|localrc]]
+GIT_BASE=<%= node['devstack_conf']['git_base'] %>
 ADMIN_PASSWORD=password
 DATABASE_PASSWORD=password
 #MYSQL_PASSWORD=password
@@ -38,7 +39,7 @@ LOGDAYS=2
 #SWIFT_DATA_DIR=$DEST/data
 #
 #enable_service s-proxy s-object s-container s-account
-disable_service n-net
+disable_service n-net horizon tempest
 disable_service n-cpu
 enable_service q-svc
 enable_service q-agt
