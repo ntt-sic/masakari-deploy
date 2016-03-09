@@ -24,6 +24,13 @@ It contains Vagrantfile and chef recipes to deploy three VMs including OpenStack
 
    Change config.vm.box = "centos/7" to build masakari with centOS.
 
+   To successfully build centos environment,
+   you might need to install vagrant-vbguest plugin
+
+   ```sh
+   $ vagrant plugin install vagrant-vbguest
+   ```
+
    ```sh
    $ vagrant up
    $ vagrant status
