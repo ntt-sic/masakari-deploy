@@ -36,3 +36,27 @@ when 'redhat', 'centos'
     group 'root'
   end
 end
+
+## Disable centos firewall and iptables
+case node[:platform]
+when 'redhat', 'centos'
+  service 'iptables.service' do
+    action [:stop, :disable]
+  end
+  service 'firewalld' do
+    action [:stop, :disable]
+  end
+end
+
+## Add epel repo to centos
+case node[:platform]
+when 'redhat', 'centos'
+  %w{yum-utils centos-release-openstack-liberty epel-release}.each do |pkg|
+    package pkg do
+      action :install
+    end
+  end
+  execute "enable-epel" do
+    command 'sudo yum-config-manager --enable epel'
+  end
+end
