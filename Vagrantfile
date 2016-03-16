@@ -167,8 +167,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #     },
   #     "masakari_controller_conf" => {
   #       "hostentrylist" => [
-  #                           { "compute01" => "192.168.50.11" },
-  #                           { "compute02" => "192.168.50.12" }
+  #                           { "compute1" => "192.168.50.11" },
+  #                           { "compute2" => "192.168.50.12" }
   #                          ]
   #     },
   #     "masakari_ci_conf" => {
@@ -180,8 +180,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 
   # Definition of Controller node
-  config.vm.define "controller01" do |controller|
-    controller.vm.hostname = "controller01"
+  config.vm.define "controller" do |controller|
+    controller.vm.hostname = "controller"
     controller.vm.network "private_network", ip: "192.168.50.10"
     controller.vm.provider "virtualbox" do |vb|
       vb.customize ["modifyvm", :id, "--memory", "8192", "--cpus", "4", "--ioapic", "on"]
@@ -205,8 +205,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         },
         "masakari_controller_conf" => {
           "hostentrylist" => [
-            { "compute01" => "192.168.50.11" },
-            { "compute02" => "192.168.50.12" }
+            { "compute1" => "192.168.50.11" },
+            { "compute2" => "192.168.50.12" }
           ]
         }
       }
@@ -214,8 +214,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # Definition of Compute node No.1
-  config.vm.define "compute01" do |compute1|
-    compute1.vm.hostname = "compute01"
+  config.vm.define "compute1" do |compute1|
+    compute1.vm.hostname = "compute1"
     compute1.vm.network "private_network", ip: "192.168.50.11"
     compute1.vm.provider "virtualbox" do |vb|
       vb.customize ["modifyvm", :id, "--memory", "1024", "--cpus", "1", "--ioapic", "on"]
@@ -240,8 +240,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # Definition of Compute node No.2
-  config.vm.define "compute02" do |compute2|
-    compute2.vm.hostname = "compute02"
+  config.vm.define "compute2" do |compute2|
+    compute2.vm.hostname = "compute2"
     compute2.vm.network "private_network", ip: "192.168.50.12"
     compute2.vm.provider "virtualbox" do |vb|
       vb.customize ["modifyvm", :id, "--memory", "1024", "--cpus", "1", "--ioapic", "on"]
