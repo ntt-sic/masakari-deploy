@@ -17,7 +17,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # if Vagrant.has_plugin?("vagrant-proxyconf")
   #   config.proxy.http     = "YOUR-HTTP-PROXY-SERVER"
   #   config.proxy.https    = "YOUR-HTTPS-PROXY-SERVER"
-  #   config.proxy.no_proxy = "localhost,127.0.0.1,192.168.50.1,192.168.50.10,192.168.50.11, 192.168.50.12"
+  #   config.proxy.no_proxy = "localhost,127.0.0.1,192.168.50.1,192.168.50.10,192.168.50.11,192.168.50.12"
   # end
   # Recommended plugins
   # This will install required additions to gust VM
