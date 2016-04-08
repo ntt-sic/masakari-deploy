@@ -1,12 +1,25 @@
 case node[:platform]
 when 'ubuntu', 'debian'
+  package ['build-essential', 'python-dev', 'python-pip', 'libmysqlclient-dev'] do
+    action :install
+  end
+  execute "masakari requirements" do
+    command "pip install -r requirements.txt"
+    cwd "/home/stack/masakari/masakari-controller/"
+    user "root"
+  end
   dpkg_package "masakari-controller_1.0.0-1_all" do
     source '/home/stack/masakari/masakari-controller_1.0.0-1_all.deb'
     action :install
   end
 when 'redhat', 'centos'
-  package ['python-setuptools', 'python-devel', 'mariadb-devel'] do
+  package ['python-setuptools', 'python-devel', 'mariadb-devel', 'python-pip'] do
     action :install
+  end
+  execute "masakari requirements" do
+    command "pip install -r requirements.txt"
+    cwd "/home/stack/masakari/masakari-controller/"
+    user "root"
   end
   rpm_package "masakari-controller-1.0.0-1.x86_64" do
     source "/home/stack/masakari/masakari-controller-1.0.0-1.x86_64.rpm"
