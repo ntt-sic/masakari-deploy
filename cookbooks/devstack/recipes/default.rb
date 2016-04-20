@@ -23,7 +23,7 @@ git "/home/stack/devstack" do
   repository 'https://github.com/openstack-dev/devstack.git'
   ## use local repository
   #repository '/vagrant_openstack/devstack'
-  revision 'stable/liberty'
+  revision 'stable/mitaka'
   user 'stack'
   group 'stack'
   action :checkout
