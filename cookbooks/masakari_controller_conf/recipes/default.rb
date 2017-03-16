@@ -1,6 +1,6 @@
 case node[:platform]
 when 'ubuntu', 'debian'
-  package ['build-essential', 'python-dev', 'python-pip', 'libmysqlclient-dev'] do
+  package ['build-essential', 'python-dev', 'python-pip', 'libmysqlclient-dev', 'libffi-dev', 'libssl-dev'] do
     action :install
   end
   execute "masakari requirements" do
@@ -13,7 +13,7 @@ when 'ubuntu', 'debian'
     action :install
   end
 when 'redhat', 'centos'
-  package ['python-setuptools', 'python-devel', 'mariadb-devel', 'python-pip'] do
+  package ['python-setuptools', 'python-devel', 'mariadb-devel', 'python-pip', 'libffi-devel', 'openssl-devel'] do
     action :install
   end
   execute "masakari requirements" do
