@@ -3,10 +3,15 @@ when 'ubuntu', 'debian'
   package ['build-essential', 'python-dev', 'python-pip', 'libmysqlclient-dev', 'libffi-dev', 'libssl-dev'] do
     action :install
   end
+  execute "upgrade pip" do
+    command "pip install -U pip"
+    user "root"
+  end
   execute "masakari requirements" do
     command "pip install -r requirements.txt"
     cwd "/home/stack/masakari/masakari-controller/"
     user "root"
+    environment 'PATH' => "/usr/local/bin:#{ENV['PATH']}"
   end
   dpkg_package "masakari-controller_1.0.0-1_all" do
     source '/home/stack/masakari/masakari-controller_1.0.0-1_all.deb'
@@ -16,10 +21,15 @@ when 'redhat', 'centos'
   package ['python-setuptools', 'python-devel', 'mariadb-devel', 'python-pip', 'libffi-devel', 'openssl-devel'] do
     action :install
   end
+  execute "upgrade pip" do
+    command "pip install -U pip"
+    user "root"
+  end
   execute "masakari requirements" do
     command "pip install -r requirements.txt"
     cwd "/home/stack/masakari/masakari-controller/"
     user "root"
+    environment 'PATH' => "/usr/local/bin:#{ENV['PATH']}"
   end
   rpm_package "masakari-controller-1.0.0-1.x86_64" do
     source "/home/stack/masakari/masakari-controller-1.0.0-1.x86_64.rpm"
