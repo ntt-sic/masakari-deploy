@@ -132,7 +132,7 @@ It contains Vagrantfile and chef recipes to deploy three VMs including OpenStack
   ```sh
   stack@controller:~/devstack$ nova hypervisor-servers compute1
   stack@controller:~/devstack$ nova hypervisor-servers compute2
-  $ nova --os-tenant-name demo instance-action-list vm2
+  $ nova --os-tenant-name demo instance-action-list vm1
   ```
 
 ### Recovery of Failed Host
