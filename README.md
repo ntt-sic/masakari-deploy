@@ -1,3 +1,12 @@
+# [UNMAINTAINED]
+This project is a test deploy tool for masakari v1.1 (https://github.com/ntt-sic/masakari), and current version of masakari is maintained as a OpenStack official project [1]. Current documentation is here [2]. Since, masakari v1.1 is not maintained, I would like to tag this repo as UNMAINTAINED. Thank you all for your contribution and support.
+Please feel free to contact masakari team for any help on latest version of masakari or any other masakari related issues.
+
+[1] https://wiki.openstack.org/wiki/Masakari
+
+[2] https://docs.openstack.org/masakari/latest/
+
+
 # Vagrant project with devstack and Chef recipes for Masakari
 
 ## What is masakari-deploy ?
