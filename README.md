@@ -108,6 +108,8 @@ It contains Vagrantfile and chef recipes to deploy three VMs including OpenStack
 * create a server instance
 
   ```sh
+  stack@controller:~/devstack$ . openrc admin admin
+  stack@controller:~/devstack$ nova flavor-create m1.nano auto 64 1 1
   stack@controller:~/devstack$ . openrc demo demo
   stack@controller:~/devstack$ nova boot --image cirros-0.3.4-x86_64-uec --flavor m1.nano vm1
   ```
@@ -130,7 +132,7 @@ It contains Vagrantfile and chef recipes to deploy three VMs including OpenStack
   ```sh
   stack@controller:~/devstack$ nova hypervisor-servers compute1
   stack@controller:~/devstack$ nova hypervisor-servers compute2
-  $ nova --os-tenant-name demo instance-action-list vm2
+  $ nova --os-tenant-name demo instance-action-list vm1
   ```
 
 ### Recovery of Failed Host

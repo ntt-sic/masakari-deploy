@@ -195,7 +195,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       # Chef uses doc by default when you run it directly from the command line.
       # Vagrant, on the other hand, applies null by default
       chef.formatter = ENV.fetch("CHEF_FORMAT", "null").downcase.to_sym
-      chef.arguments = '-l debug'
+      chef.arguments = '-l debug --legacy-mode'
       chef.roles_path = "roles"
       chef.add_role("controller")
       chef.json = {
@@ -223,7 +223,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     compute1.vm.provision "chef_solo" do |chef|
       chef.log_level = ENV.fetch("CHEF_LOG", "info").downcase.to_sym
       chef.formatter = ENV.fetch("CHEF_FORMAT", "null").downcase.to_sym
-      chef.arguments = '-l debug'
+      chef.arguments = '-l debug --legacy-mode'
       chef.roles_path = "roles"
       chef.add_role("compute")
       chef.json = {
@@ -249,7 +249,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     compute2.vm.provision "chef_solo" do |chef|
       chef.log_level = ENV.fetch("CHEF_LOG", "info").downcase.to_sym
       chef.formatter = ENV.fetch("CHEF_FORMAT", "null").downcase.to_sym
-      chef.arguments = '-l debug'
+      chef.arguments = '-l debug --legacy-mode'
       chef.roles_path = "roles"
       chef.add_role("compute")
       chef.json = {
